@@ -28,19 +28,13 @@ async function handler(req, res) {
     };
 
     try {
-      const client = await MongoClient.connect(
-        process.env.MONGODB_CONNECTION_STRING.replace(
-          "<USERNAME>:<PASSWORD>",
-          process.env.MONGODB_USERNAME_PASSWORD
-        )
-      );
+      client = await MongoClient.connect(process.env.MONGODB_CONNECTION_STRING);
     } catch (error) {
       res.status(500).json({
         message: "Could not connect to database!",
       });
       return;
     }
-
     const db = client.db();
 
     try {
