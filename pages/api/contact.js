@@ -27,6 +27,7 @@ async function handler(req, res) {
       message,
     };
 
+    let client;
     try {
       client = await MongoClient.connect(process.env.MONGODB_CONNECTION_STRING);
     } catch (error) {
