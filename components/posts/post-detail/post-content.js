@@ -1,6 +1,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import Image from "next/image";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { materialDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
 import styles from "./post-content.module.css";
 import PostHeader from "./post-header";
@@ -29,6 +31,35 @@ export default function PostContent(props) {
         );
       }
       return <p>{paragraph.children}</p>;
+    },
+
+    // code: (code) => {
+    //   const { language, value } = code;
+    //   return (
+    //     <SyntaxHighlighter
+    //       language={language}
+    //       children={value}
+    //       style={xonokai}
+    //     />
+    //   );
+    // },
+
+    code(code) {
+      const { children, className } = code;
+      const syntaxTheme = materialDark;
+
+      const lang = /language-(\w+)/.exec(className || "");
+
+      return (
+        <SyntaxHighlighter
+          style={syntaxTheme}
+          language={lang[1]}
+          PreTag="div"
+          showLineNumbers={true}
+        >
+          {children}
+        </SyntaxHighlighter>
+      );
     },
   };
 
