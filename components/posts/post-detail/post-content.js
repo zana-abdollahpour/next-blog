@@ -33,17 +33,6 @@ export default function PostContent(props) {
       return <p>{paragraph.children}</p>;
     },
 
-    // code: (code) => {
-    //   const { language, value } = code;
-    //   return (
-    //     <SyntaxHighlighter
-    //       language={language}
-    //       children={value}
-    //       style={xonokai}
-    //     />
-    //   );
-    // },
-
     code(code) {
       const { children, className } = code;
       const syntaxTheme = materialDark;
